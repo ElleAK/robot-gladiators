@@ -1,4 +1,8 @@
+var randomNumber = function(min, max) {
+  var value = Math.floor(Math.random() * (min - max + 1) + min);
 
+  return value;
+};
 
 
 //fight function
@@ -54,6 +58,7 @@ if (enemy.health <=0) {
 };
 var startGame = function() {
 
+  
   playerInfo.reset();
 
   playerInfo.health = 100;
@@ -63,6 +68,7 @@ var startGame = function() {
 for (var i = 0; i < enemyInfo.length; i++) {
   if (playerInfo.health > 0) {
     window.alert("Welcome to Robot Gladiators! Round " + ( i + 1 ));
+    
     // pick new enemy to fight based on the index of the enemyNames array
     var pickedEnemyObj = enemyInfo[i];
 
@@ -88,11 +94,7 @@ for (var i = 0; i < enemyInfo.length; i++) {
 }
 endGame();
 };
-var randomNumber = function(min, max) {
-  var value = Math.floor(Math.random() * (min - max + 1) + min);
 
-  return value;
-};
 //function to end the entire game
 var endGame = function() {
   window.alert("The game has now ended. Let's see how you did!");
@@ -115,7 +117,7 @@ if (playAgainConfirm) {
 var shop = function() {
   var shopOptionPrompt = window.prompt(
     "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one : 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice."
-  )
+  );
   switch (shopOptionPrompt) {
     case "REFILL":
     case "refill":
@@ -139,8 +141,17 @@ var shop = function() {
       break;
   }
 };
+var getPlayerName = function() {
+  var name = "";
+
+  while (name === "" || name === null) {
+    name = prompt("What is your robot's name?");
+  }
+console.log("Your robot's name is " + name);
+return name;
+};
 var playerInfo = {
-  name: window.prompt("What is your robot's name?"),
+  name: getPlayerName(),
   health: 100,
   attack: 10,
   money: 10,
@@ -185,5 +196,10 @@ var enemyInfo = [
     attack: randomNumber (10, 14)
   }
 ];
+
+console.log(enemyInfo);
+console.log(enemyInfo[0]);
+console.log(enemyInfo[0].name);
+console.log(enemyInfo[0]["attack"]);
 // start the game when the page loads
 startGame();
